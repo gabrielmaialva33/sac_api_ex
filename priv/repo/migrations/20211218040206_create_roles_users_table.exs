@@ -5,8 +5,11 @@ defmodule SacApiEx.Repo.Migrations.CreateRolesUsersTable do
     create table(:roles_users, primary_key: false) do
       add :id, :uuid, primary_key: true, null: false, default: fragment("uuid_generate_v4()")
 
-      add :role_id, references(:roles, type: :uuid, column: :id, on_delete: :delete_all), null: false
-      add :user_id, references(:users, type: :uuid, column: :id, on_delete: :delete_all), null: false
+      add :role_id, references(:roles, type: :uuid, column: :id, on_delete: :delete_all),
+        null: false
+
+      add :user_id, references(:users, type: :uuid, column: :id, on_delete: :delete_all),
+        null: false
 
       timestamps
     end

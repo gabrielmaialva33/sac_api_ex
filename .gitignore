@@ -22,3 +22,8 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 sac_api_ex-*.tar
 
+.DS_Store
+.idea
+
+# Secret
+.env

@@ -1,0 +1,17 @@
+# Git data
+.git
+
+# Elixir build artifacts
+_build
+# Don't ignore the directory where our releases get built
+!_build/prod/rel
+deps
+
+# Node build artifacts
+node_modules
+
+# Tests
+test
+
+# Compiled static artifacts
+priv/static

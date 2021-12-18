@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="RUBY_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Elixir" name="Elixir facet">
+      <configuration sdkName="Elixir 1.13.1" />
+    </facet>
+  </component>
   <component name="ModuleRunConfigurationManager">
     <shared />
   </component>
@@ -11,5 +16,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Elixir 1.13.1" level="application" />
   </component>
 </module>

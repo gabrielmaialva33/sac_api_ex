@@ -9,7 +9,7 @@ defmodule SacApiEx.Repo.Migrations.CreateRolesTable do
       add :name, :string, size: 20
       add :description, :text
 
-      timestamps
+      timestamps()
     end
 
     create unique_index(:roles, [:name], comment: "index role name")

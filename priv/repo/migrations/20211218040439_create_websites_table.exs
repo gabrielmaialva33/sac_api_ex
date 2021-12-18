@@ -10,7 +10,7 @@ defmodule SacApiEx.Repo.Migrations.CreateWebsitesTable do
       add :url, :string, null: false
       add :is_deleted, :boolean, default: false, null: false
 
-      timestamps
+      timestamps()
     end
   end
 end

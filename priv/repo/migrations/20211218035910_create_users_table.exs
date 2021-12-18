@@ -15,7 +15,7 @@ defmodule SacApiEx.Repo.Migrations.CreateUsersTable do
       add :is_blocked, :boolean, default: false, null: false
       add :is_deleted, :boolean, default: false, null: false
 
-      timestamps
+      timestamps()
     end
 
     create unique_index(:users, [:email])

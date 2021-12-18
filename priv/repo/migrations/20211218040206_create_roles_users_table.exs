@@ -11,7 +11,7 @@ defmodule SacApiEx.Repo.Migrations.CreateRolesUsersTable do
       add :user_id, references(:users, type: :uuid, column: :id, on_delete: :delete_all),
         null: false
 
-      timestamps
+      timestamps()
     end
 
     create unique_index(:roles_users, [:role_id, :user_id])

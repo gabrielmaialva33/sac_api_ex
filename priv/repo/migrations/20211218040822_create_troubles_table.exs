@@ -10,7 +10,7 @@ defmodule SacApiEx.Repo.Migrations.CreateTroublesTable do
       add :type, :string, null: false, default: "none"
       add :is_deleted, :boolean, default: false, null: false
 
-      timestamps
+      timestamps()
     end
   end
 end

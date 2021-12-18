@@ -7,7 +7,7 @@ defmodule SacApiEx.Repo.Migrations.CreateReportsTable do
 
       add :is_reported, :boolean, default: true, null: false
 
-      timestamps
+      timestamps()
     end
   end
 end

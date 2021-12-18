@@ -4,9 +4,10 @@ defmodule SacApiEx.Websites.Repositories.WebsitesRepository do
   """
 
   import Ecto.Query, warn: false
-  alias SacApiEx.Repo
 
-  alias SacApiEx.Websites.Models.Website
+  alias Ecto.Changeset
+  alias SacApiEx.{Repo, Websites.Models.Website}
+  alias Flop
 
   @doc """
   Returns the list of websites.
@@ -17,8 +18,11 @@ defmodule SacApiEx.Websites.Repositories.WebsitesRepository do
       [%Website{}, ...]
 
   """
-  def list_websites do
-    Repo.all(Website)
+  @spec list_websites(Flop.t()) ::
+          {:ok, {[Website.t()], Flop.Meta.t()}} | {:error, Changeset.t()}
+  def list_websites(flop \\ %Flop{}) do
+    query = from w in Website, where: w.is_deleted != true, order_by: w.title
+    Flop.validate_and_run(query, flop, for: Website, repo: Repo)
   end
 
   @doc """

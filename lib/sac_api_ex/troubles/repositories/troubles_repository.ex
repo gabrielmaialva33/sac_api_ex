@@ -17,6 +17,8 @@ defmodule SacApiEx.Troubles.Repositories.TroublesRepository do
       [%Trouble{}, ...]
 
   """
+  @spec list_websites(Flop.t()) ::
+          {:ok, {[Website.t()], Flop.Meta.t()}} | {:error, Changeset.t()}
   def list_troubles do
     Repo.all(Trouble)
   end

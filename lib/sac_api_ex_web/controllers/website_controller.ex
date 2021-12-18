@@ -3,16 +3,19 @@ defmodule SacApiExWeb.WebsiteController do
 
   alias SacApiEx.Websites.Repositories.WebsitesRepository
   alias SacApiEx.Websites.Models.Website
+  alias Flop
 
+  plug :put_view, SacApiExWeb.WebsiteView
   action_fallback SacApiExWeb.FallbackController
 
-  def index(conn, _params) do
-    websites = WebsitesRepository.list_websites()
-    render(conn, "index.json", websites: websites)
+  def index(conn, params) do
+    with {:ok, flop} <- Flop.validate(params, for: Website) do
+      {:ok, {websites, meta}} = WebsitesRepository.list_websites(flop)
+      render(conn, "index.json", %{websites: websites, meta: meta})
+    end
   end
 
   def create(conn, %{"website" => website_params}) do
-
     with {:ok, %Website{} = website} <- WebsitesRepository.create_website(website_params) do
       conn
       |> put_status(:created)

@@ -3,12 +3,16 @@ defmodule SacApiExWeb.TroubleController do
 
   alias SacApiEx.Troubles.Repositories.TroublesRepository
   alias SacApiEx.Troubles.Models.Trouble
+  alias Flop
 
+  plug :put_view, SacApiExWeb.TroubleView
   action_fallback SacApiExWeb.FallbackController
 
-  def index(conn, _params) do
-    troubles = TroublesRepository.list_troubles()
-    render(conn, "index.json", troubles: troubles)
+  def index(conn, params) do
+    with {:ok, flop} <- Flop.validate(params, for: Trouble) do
+      {:ok, {troubles, meta}} = TroublesRepository.list_troubles(flop)
+      render(conn, "index.json", %{troubles: troubles, meta: meta})
+    end
   end
 
   def create(conn, %{"trouble" => trouble_params}) do

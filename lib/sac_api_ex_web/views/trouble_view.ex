@@ -1,9 +1,15 @@
 defmodule SacApiExWeb.TroubleView do
   use SacApiExWeb, :view
-  alias SacApiExWeb.TroubleView
 
-  def render("index.json", %{troubles: troubles}) do
-    %{data: render_many(troubles, TroubleView, "trouble.json")}
+  alias Flop
+  alias SacApiExWeb.TroubleView
+  alias SacApiExWeb.MetaView
+
+  def render("index.json", %{troubles: troubles, meta: meta}) do
+    %{
+      data: render_many(troubles, TroubleView, "trouble.json"),
+      __meta__: MetaView.render("meta.json", %{meta: meta})
+    }
   end
 
   def render("show.json", %{trouble: trouble}) do

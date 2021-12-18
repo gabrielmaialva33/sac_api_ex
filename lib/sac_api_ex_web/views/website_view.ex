@@ -1,9 +1,15 @@
 defmodule SacApiExWeb.WebsiteView do
   use SacApiExWeb, :view
-  alias SacApiExWeb.WebsiteView
 
-  def render("index.json", %{websites: websites}) do
-    %{data: render_many(websites, WebsiteView, "website.json")}
+  alias Flop
+  alias SacApiExWeb.WebsiteView
+  alias SacApiExWeb.MetaView
+
+  def render("index.json", %{websites: websites, meta: meta}) do
+    %{
+      data: render_many(websites, WebsiteView, "website.json"),
+      __meta__: MetaView.render("meta.json", %{meta: meta})
+    }
   end
 
   def render("show.json", %{website: website}) do

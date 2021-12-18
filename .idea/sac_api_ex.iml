@@ -40,6 +40,7 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/telemetry" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/decimal" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/flop" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -93,5 +94,8 @@
     <orderEntry type="library" name="kadabra" level="project" />
     <orderEntry type="library" name="x509" level="project" />
     <orderEntry type="library" name="html_entities" level="project" />
+    <orderEntry type="library" name="flop" level="project" />
+    <orderEntry type="library" name="credo" level="project" />
+    <orderEntry type="library" name="ex_machina" level="project" />
   </component>
 </module>

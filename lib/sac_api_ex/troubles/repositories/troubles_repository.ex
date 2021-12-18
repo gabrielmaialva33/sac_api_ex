@@ -4,7 +4,10 @@ defmodule SacApiEx.Troubles.Repositories.TroublesRepository do
   """
 
   import Ecto.Query, warn: false
+
+  alias Ecto.Changeset
   alias SacApiEx.Repo
+  alias Flop
 
   alias SacApiEx.Troubles.Models.Trouble
 
@@ -17,10 +20,11 @@ defmodule SacApiEx.Troubles.Repositories.TroublesRepository do
       [%Trouble{}, ...]
 
   """
-  @spec list_websites(Flop.t()) ::
-          {:ok, {[Website.t()], Flop.Meta.t()}} | {:error, Changeset.t()}
-  def list_troubles do
-    Repo.all(Trouble)
+  @spec list_troubles(Flop.t()) ::
+          {:ok, {[Trouble.t()], Flop.Meta.t()}} | {:error, Changeset.t()}
+  def list_troubles(flop \\ %Flop{}) do
+    query = from t in Trouble, where: t.is_deleted != true, order_by: t.title
+    Flop.validate_and_run(query, flop, for: Trouble, repo: Repo)
   end
 
   @doc """

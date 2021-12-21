@@ -7,7 +7,8 @@ defmodule SacApiEx.Repo.Migrations.CreateTroublesTable do
 
       add :title, :string, null: false
       add :description, :text
-      add :type, :string, null: false, default: "none"
+      add :type, :string, null: false, default: "common"
+
       add :is_deleted, :boolean, default: false, null: false
 
       timestamps()

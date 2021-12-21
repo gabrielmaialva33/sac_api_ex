@@ -21,8 +21,7 @@ defmodule SacApiExWeb.WebsiteView do
       id: website.id,
       title: website.title,
       description: website.description,
-      url: website.url,
-      is_deleted: website.is_deleted
+      url: website.url
     }
   end
 end

@@ -15,12 +15,12 @@ services:
       - .env.docker
     environment:
       PORT: ${PORT}
-      PG_HOST: postgres
-      PG_PORT: db-postgres
+      PG_HOST: db-postgres
+      PG_PORT: ${PG_PORT}
       PG_USER: ${PG_USER}
       PG_PASSWORD: ${PG_PASSWORD}
       PG_DB_NAME: ${PG_DB_NAME}
-
+      MIX_ENV: ${MIX_ENV}
       DATABASE_URL: ${DATABASE_URL}
       SECRET_KEY_BASE: ${SECRET_KEY_BASE}
       POOL_SIZE: ${POOL_SIZE}
@@ -41,6 +41,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
       - POSTGRES_INITDB_ARGS="--encoding=UTF-8"
+      - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - '5432:5432'
     expose:

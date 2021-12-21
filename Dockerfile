@@ -2,11 +2,11 @@ FROM library/postgres
 COPY ./init.sql /docker-entrypoint-initdb.d/
 
 # Use an official Elixir runtime as a parent image
-FROM elixir:latest AS build
+FROM elixir:latest
 LABEL maintainer="Gabriel Maia <gabrielmaialva33@gmail.com>"
 
 # Install
-RUN apt-get update && apt-get install -y postgresql-client
+RUN apt-get update && apt-get install -y libpq-dev
 
 # Install Hex + Rebar
 RUN mix do local.hex --force, local.rebar --force
@@ -17,11 +17,6 @@ RUN mkdir /app
 COPY . /app
 # Set working directory
 WORKDIR /app
-
-
-# set build ENV - dev | prod
-ENV MIX_ENV=dev
-ENV PG_HOST=db-postgres
 
 # Install only required packages
 RUN mix deps.get
@@ -38,4 +33,4 @@ EXPOSE $PORT
 #RUN min ecto.migrate
 
 # Run entrypoint
-CMD ["/app/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]

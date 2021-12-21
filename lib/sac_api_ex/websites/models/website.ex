@@ -2,7 +2,7 @@ defmodule SacApiEx.Websites.Models.Website do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias SacApiEx.Websites.Models.Website
+  alias SacApiEx.Websites.Models.{Website, WebsiteTrouble}
   alias SacApiEx.Troubles.Models.Trouble
 
   # global fields
@@ -32,15 +32,28 @@ defmodule SacApiEx.Websites.Models.Website do
 
     timestamps()
 
-    # set many to many relationship
-    many_to_many :troubles, Trouble, join_through: "websites_troubles"
+    # set relationships
+    # has_many :troubles, Trouble
+    many_to_many :troubles,
+                 Trouble,
+                 join_through: WebsiteTrouble,
+                 join_keys: [
+                   website_id: :id,
+                   trouble_id: :id
+                 ],
+                 on_replace: :delete
   end
 
   @doc false
-  def changeset(%Website{} = website, params) do
+  def changeset(%Website{} = website, params \\ %{}) do
+    IO.inspect(params)
+    IO.inspect(Map.take(params, ["troubles"])["troubles"])
+
     website
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> unique_constraint(:title)
+    |> cast_assoc(:troubles, requires: false)
+    |> put_assoc(:troubles, Map.take(params, ["troubles"])["troubles"])
   end
 end

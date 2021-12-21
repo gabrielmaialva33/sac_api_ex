@@ -21,8 +21,7 @@ defmodule SacApiExWeb.TroubleView do
       id: trouble.id,
       title: trouble.title,
       description: trouble.description,
-      type: trouble.type,
-      is_deleted: trouble.is_deleted
+      type: trouble.type
     }
   end
 end

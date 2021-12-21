@@ -3,7 +3,7 @@ defmodule SacApiEx.Troubles.Models.Trouble do
   import Ecto.Changeset
 
   alias SacApiEx.Troubles.Models.Trouble
-  alias SacApiEx.Websites.Models.Website
+  alias SacApiEx.Websites.Models.{Website, WebsiteTrouble}
 
   # global fields
   @required_fields ~w(title description)a
@@ -28,16 +28,25 @@ defmodule SacApiEx.Troubles.Models.Trouble do
     field :title, :string
     field :description, :string
     field :type, :string
+
     field :is_deleted, :boolean, default: false
 
     timestamps()
 
-    # set many to many relationship
-    many_to_many :websites, Website, join_through: "websites_troubles"
+    # set relationships
+    # belongs_to :websites, Website
+    many_to_many :websites,
+                 Website,
+                 join_through: WebsiteTrouble,
+                 join_keys: [
+                   website_id: :id,
+                   trouble_id: :id
+                 ],
+                 on_replace: :delete
   end
 
   @doc false
-  def changeset(%Trouble{} = trouble, params) do
+  def changeset(%Trouble{} = trouble, params \\ %{}) do
     trouble
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)

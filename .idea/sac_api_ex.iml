@@ -41,6 +41,8 @@
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/plug" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/decimal" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/flop" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_psql_extras" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/table_rex" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -97,5 +99,8 @@
     <orderEntry type="library" name="flop" level="project" />
     <orderEntry type="library" name="credo" level="project" />
     <orderEntry type="library" name="ex_machina" level="project" />
+    <orderEntry type="library" name="table_rex" level="project" />
+    <orderEntry type="library" name="mock" level="project" />
+    <orderEntry type="library" name="earmark" level="project" />
   </component>
 </module>

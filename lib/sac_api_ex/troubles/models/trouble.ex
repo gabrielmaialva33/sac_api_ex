@@ -22,7 +22,6 @@ defmodule SacApiEx.Troubles.Models.Trouble do
 
   # troubles schema
   @primary_key {:id, :binary_id, autogenerate: true}
-  @foreign_key_type :binary_id
   @type t :: %Trouble{}
   schema "troubles" do
     field :title, :string

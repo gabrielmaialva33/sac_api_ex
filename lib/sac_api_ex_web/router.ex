@@ -26,7 +26,15 @@ defmodule SacApiExWeb.Router do
 
     scope "/" do
       pipe_through [:fetch_session, :protect_from_forgery]
-      live_dashboard "/dashboard", metrics: SacApiExWeb.Telemetry
+
+      live_dashboard "/dashboard",
+        metrics: SacApiExWeb.Telemetry,
+        ecto_repos: [MyApp.Repo],
+        ecto_psql_extras_options: [
+          long_running_queries: [
+            threshold: "200 milliseconds"
+          ]
+        ]
     end
   end
 

@@ -46,14 +46,13 @@ defmodule SacApiEx.Websites.Models.Website do
 
   @doc false
   def changeset(%Website{} = website, params \\ %{}) do
-    IO.inspect(params)
-    IO.inspect(Map.take(params, ["troubles"])["troubles"])
+
+    IO.inspect(params["troubles"])
 
     website
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> unique_constraint(:title)
-    |> cast_assoc(:troubles, requires: false)
-    |> put_assoc(:troubles, Map.take(params, ["troubles"])["troubles"])
+    |> cast_assoc(:troubles, required: true)
   end
 end

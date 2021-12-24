@@ -30,9 +30,9 @@ defmodule SacApiEx.Websites.Models.WebsiteTrouble do
     |> foreign_key_constraint(:websites)
     |> foreign_key_constraint(:troubles)
     |> unique_constraint(
-      [:websites, :troubles],
-      name: :websites_id_troubles_id_unique_index,
-      message: @already_exists
-    )
+         [:websites, :troubles],
+         name: :website_id_trouble_id_unique_index,
+         message: @already_exists
+       )
   end
 end

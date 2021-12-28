@@ -1,4 +1,6 @@
 defmodule SacApiEx.Websites.Models.WebsiteTrouble do
+  @moduledoc false
+
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -30,9 +32,9 @@ defmodule SacApiEx.Websites.Models.WebsiteTrouble do
     |> foreign_key_constraint(:websites)
     |> foreign_key_constraint(:troubles)
     |> unique_constraint(
-      [:websites, :troubles],
-      name: :website_id_trouble_id_unique_index,
-      message: @already_exists
-    )
+         [:websites, :troubles],
+         name: :website_id_trouble_id_unique_index,
+         message: @already_exists
+       )
   end
 end

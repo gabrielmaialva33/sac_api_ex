@@ -1,10 +1,11 @@
 defmodule SacApiEx.Websites.Models.Website do
+  @moduledoc false
+
   use Ecto.Schema
   import Ecto.Changeset
 
   alias SacApiEx.Websites.Models.{Website, WebsiteTrouble}
   alias SacApiEx.Troubles.Models.Trouble
-  alias SacApiEx.Repo
 
   # global fields
   @required_fields ~w(title url)a
@@ -46,8 +47,6 @@ defmodule SacApiEx.Websites.Models.Website do
 
   @doc false
   def changeset(%Website{} = website, params \\ %{}) do
-    IO.inspect(params["troubles"])
-
     website
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)

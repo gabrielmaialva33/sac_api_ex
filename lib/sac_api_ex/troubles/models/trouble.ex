@@ -1,4 +1,6 @@
 defmodule SacApiEx.Troubles.Models.Trouble do
+  @moduledoc false
+
   use Ecto.Schema
   import Ecto.Changeset
 

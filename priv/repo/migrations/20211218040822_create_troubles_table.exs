@@ -13,5 +13,7 @@ defmodule SacApiEx.Repo.Migrations.CreateTroublesTable do
 
       timestamps()
     end
+
+    create unique_index(:troubles, [:title])
   end
 end

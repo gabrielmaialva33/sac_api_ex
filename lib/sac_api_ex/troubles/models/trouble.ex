@@ -51,6 +51,7 @@ defmodule SacApiEx.Troubles.Models.Trouble do
     trouble
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
+    |> update_change(:title, &String.capitalize/1)
     |> unique_constraint(:title)
   end
 end

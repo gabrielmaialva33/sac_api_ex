@@ -1,5 +1,7 @@
 defmodule SacApiEx.Websites.Models.Website do
-  @moduledoc false
+  @moduledoc ~S"""
+  Defines website schema.
+  """
 
   use Ecto.Schema
   import Ecto.Changeset
@@ -51,6 +53,6 @@ defmodule SacApiEx.Websites.Models.Website do
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> unique_constraint(:title)
-    |> cast_assoc(:troubles, required: false)
+    |> cast_assoc(:troubles, with: &Trouble.changeset/2, required: false)
   end
 end

@@ -3,6 +3,7 @@ defmodule SacApiExWeb.WebsiteView do
 
   alias Flop
   alias SacApiExWeb.WebsiteView
+  alias SacApiExWeb.TroubleView
   alias SacApiExWeb.MetaView
 
   def render("index.json", %{websites: websites, meta: meta}) do
@@ -21,7 +22,8 @@ defmodule SacApiExWeb.WebsiteView do
       id: website.id,
       title: website.title,
       description: website.description,
-      url: website.url
+      url: website.url,
+      troubles: render_many(website.troubles, TroubleView, "trouble.json")
     }
   end
 end

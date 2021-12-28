@@ -7,13 +7,11 @@ defmodule SacApiEx.Repo.Migrations.CreateTroublesReportsTable do
 
       add :website_id,
           references(:websites, type: :uuid, column: :id, on_delete: :delete_all),
-          null: false,
-          primary_key: true
+          null: false
 
       add :trouble_id,
           references(:troubles, type: :uuid, column: :id, on_delete: :delete_all),
-          null: false,
-          primary_key: true
+          null: false
 
       add :type, :string, null: false, default: "common"
 

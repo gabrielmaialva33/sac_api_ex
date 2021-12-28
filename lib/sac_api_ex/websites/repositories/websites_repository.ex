@@ -21,7 +21,9 @@ defmodule SacApiEx.Websites.Repositories.WebsitesRepository do
   @spec list_websites(Flop.t()) ::
           {:ok, {[Website.t()], Flop.Meta.t()}} | {:error, Changeset.t()}
   def list_websites(flop \\ %Flop{}) do
-    query = from w in Website, where: w.is_deleted != true, order_by: w.title
+    query =
+      from w in Website, preload: [:troubles], where: w.is_deleted != true, order_by: w.title
+
     Flop.validate_and_run(query, flop, for: Website, repo: Repo)
   end
 

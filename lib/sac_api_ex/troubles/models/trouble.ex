@@ -4,7 +4,7 @@ defmodule SacApiEx.Troubles.Models.Trouble do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias SacApiEx.Troubles.Models.Trouble
+  alias SacApiEx.Troubles.Models.{Trouble, Report}
   alias SacApiEx.Websites.Models.{Website, WebsiteTrouble}
 
   # global fields
@@ -14,8 +14,8 @@ defmodule SacApiEx.Troubles.Models.Trouble do
   # website flop drive
   @derive {
     Flop.Schema,
-    filterable: [:title, :description, :type],
-    sortable: [:title, :description],
+    filterable: @required_fields ++ @optional_fields,
+    sortable: @required_fields,
     default_order_by: [:title],
     default_order_directions: [:asc, :desc],
     default_limit: 10,
@@ -44,6 +44,8 @@ defmodule SacApiEx.Troubles.Models.Trouble do
                    trouble_id: :id
                  ],
                  on_replace: :delete
+
+    has_many :reports, Report, foreign_key: :trouble_id, references: :id
   end
 
   @doc false

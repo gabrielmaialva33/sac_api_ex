@@ -10,7 +10,7 @@ defmodule SacApiEx.Websites.Repositories.WebsitesRepository do
   alias Flop
 
   @doc """
-  Returns the list of websites.
+  Returns the list of websites with pagination.
 
   ## Examples
 
@@ -41,7 +41,10 @@ defmodule SacApiEx.Websites.Repositories.WebsitesRepository do
       ** (Ecto.NoResultsError)
 
   """
-  def get_website!(id), do: Repo.get!(Website, id)
+  def get_website!(id),
+    do:
+      Repo.get!(Website, id)
+      |> Repo.preload(:troubles)
 
   @doc """
   Creates a website.
@@ -75,6 +78,7 @@ defmodule SacApiEx.Websites.Repositories.WebsitesRepository do
   """
   def update_website(%Website{} = website, attrs) do
     website
+    |> Repo.preload(:troubles)
     |> Website.changeset(attrs)
     |> Repo.update()
   end

@@ -1,13 +1,14 @@
 defmodule SacApiExWeb.Router do
   use SacApiExWeb, :router
 
-  alias SacApiExWeb.{WebsiteController, TroubleController}
+  alias SacApiExWeb.{WebsiteController, TroubleController, ReportController}
 
   pipeline :api do
     plug :accepts, ["json"]
 
     resources "/websites", WebsiteController, only: [:index, :show, :create, :update, :delete]
     resources "/troubles", TroubleController, only: [:index, :show, :create, :update, :delete]
+    resources "/reports", ReportController, only: [:index, :show, :create, :update, :delete]
   end
 
   scope "/api", SacApiExWeb do
@@ -28,13 +29,13 @@ defmodule SacApiExWeb.Router do
       pipe_through [:fetch_session, :protect_from_forgery]
 
       live_dashboard "/dashboard",
-        metrics: SacApiExWeb.Telemetry,
-        ecto_repos: [MyApp.Repo],
-        ecto_psql_extras_options: [
-          long_running_queries: [
-            threshold: "200 milliseconds"
-          ]
-        ]
+                     metrics: SacApiExWeb.Telemetry,
+                     ecto_repos: [MyApp.Repo],
+                     ecto_psql_extras_options: [
+                       long_running_queries: [
+                         threshold: "200 milliseconds"
+                       ]
+                     ]
     end
   end
 

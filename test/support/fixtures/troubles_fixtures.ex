@@ -20,4 +20,18 @@ defmodule SacApiEx.TroublesFixtures do
 
     trouble
   end
+
+  @doc """
+  Generate a report.
+  """
+  def report_fixture(attrs \\ %{}) do
+    {:ok, report} =
+      attrs
+      |> Enum.into(%{
+        is_reported: true
+      })
+      |> SacApiEx.Troubles.create_report()
+
+    report
+  end
 end

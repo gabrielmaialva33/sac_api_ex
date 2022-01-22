@@ -1,6 +1,6 @@
 defmodule SacApiEx.Websites.Models.Website do
-  @moduledoc ~S"""
-  Defines website schema.
+  @moduledoc """
+  Define website schema.
   """
 
   use Ecto.Schema
@@ -16,8 +16,8 @@ defmodule SacApiEx.Websites.Models.Website do
   # website flop drive
   @derive {
     Flop.Schema,
-    filterable: [:title, :description, :url],
-    sortable: [:title, :url],
+    filterable: @required_fields ++ @optional_fields,
+    sortable: @required_fields,
     default_order_by: [:title],
     default_order_directions: [:asc, :desc],
     default_limit: 10,
@@ -44,7 +44,7 @@ defmodule SacApiEx.Websites.Models.Website do
                    website_id: :id,
                    trouble_id: :id
                  ],
-                 on_replace: :delete
+                 on_replace: :mark_as_invalid
   end
 
   @doc false

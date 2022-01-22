@@ -73,4 +73,58 @@ defmodule SacApiEx.TroublesTest do
       assert %Ecto.Changeset{} = Troubles.change_trouble(trouble)
     end
   end
+
+  describe "reports" do
+    alias SacApiEx.Troubles.Report
+
+    import SacApiEx.TroublesFixtures
+
+    @invalid_attrs %{is_reported: nil}
+
+    test "list_reports/0 returns all reports" do
+      report = report_fixture()
+      assert Troubles.list_reports() == [report]
+    end
+
+    test "get_report!/1 returns the report with given id" do
+      report = report_fixture()
+      assert Troubles.get_report!(report.id) == report
+    end
+
+    test "create_report/1 with valid data creates a report" do
+      valid_attrs = %{is_reported: true}
+
+      assert {:ok, %Report{} = report} = Troubles.create_report(valid_attrs)
+      assert report.is_reported == true
+    end
+
+    test "create_report/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Troubles.create_report(@invalid_attrs)
+    end
+
+    test "update_report/2 with valid data updates the report" do
+      report = report_fixture()
+      update_attrs = %{is_reported: false}
+
+      assert {:ok, %Report{} = report} = Troubles.update_report(report, update_attrs)
+      assert report.is_reported == false
+    end
+
+    test "update_report/2 with invalid data returns error changeset" do
+      report = report_fixture()
+      assert {:error, %Ecto.Changeset{}} = Troubles.update_report(report, @invalid_attrs)
+      assert report == Troubles.get_report!(report.id)
+    end
+
+    test "delete_report/1 deletes the report" do
+      report = report_fixture()
+      assert {:ok, %Report{}} = Troubles.delete_report(report)
+      assert_raise Ecto.NoResultsError, fn -> Troubles.get_report!(report.id) end
+    end
+
+    test "change_report/1 returns a report changeset" do
+      report = report_fixture()
+      assert %Ecto.Changeset{} = Troubles.change_report(report)
+    end
+  end
 end

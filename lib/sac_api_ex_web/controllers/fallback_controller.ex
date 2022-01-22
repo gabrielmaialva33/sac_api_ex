@@ -19,6 +19,6 @@ defmodule SacApiExWeb.FallbackController do
     conn
     |> put_status(:not_found)
     |> put_view(SacApiExWeb.ErrorView)
-    |> render(:"404")
+    |> render(:"404.json")
   end
 end

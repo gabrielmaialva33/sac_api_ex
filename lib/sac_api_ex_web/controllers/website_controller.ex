@@ -15,6 +15,11 @@ defmodule SacApiExWeb.WebsiteController do
     end
   end
 
+  def show(conn, %{"id" => id}) do
+    website = WebsitesRepository.get_website!(id)
+    render(conn, "show.json", website: website)
+  end
+
   def create(conn, %{"website" => website_params}) do
     with {:ok, %Website{} = website} <- WebsitesRepository.create_website(website_params) do
       conn
@@ -22,11 +27,6 @@ defmodule SacApiExWeb.WebsiteController do
       |> put_resp_header("location", Routes.website_path(conn, :show, website))
       |> render("show.json", website: website)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    website = WebsitesRepository.get_website!(id)
-    render(conn, "show.json", website: website)
   end
 
   def update(conn, %{"id" => id, "website" => website_params}) do

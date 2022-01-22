@@ -17,4 +17,20 @@ defmodule SacApiExWeb.ErrorView do
       }
     }
   end
+
+  def render("404.json", _assigns) do
+    %{
+      errors: %{
+        detail: "Not Found"
+      }
+    }
+  end
+
+  def render("500.json", _assigns) do
+    %{
+      errors: %{
+        detail: "Internal server error"
+      }
+    }
+  end
 end

@@ -12,7 +12,7 @@ services:
       - postgres
       - redis
     env_file:
-      - .env.docker
+      - ./.env.docker
     environment:
       PORT: ${PORT}
       PG_HOST: db-postgres

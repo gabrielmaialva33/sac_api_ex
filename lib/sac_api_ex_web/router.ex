@@ -1,7 +1,7 @@
 defmodule SacApiExWeb.Router do
   use SacApiExWeb, :router
 
-  alias SacApiExWeb.{WebsiteController, TroubleController, ReportController}
+  alias SacApiExWeb.{WebsiteController, TroubleController, ReportController, RoleController}
 
   pipeline :api do
     plug :accepts, ["json"]
@@ -9,6 +9,7 @@ defmodule SacApiExWeb.Router do
     resources "/websites", WebsiteController, only: [:index, :show, :create, :update, :delete]
     resources "/troubles", TroubleController, only: [:index, :show, :create, :update, :delete]
     resources "/reports", ReportController, only: [:index, :show, :create, :update, :delete]
+    resources "/roles", RoleController, only: [:index, :show, :create, :update, :delete]
   end
 
   scope "/api", SacApiExWeb do

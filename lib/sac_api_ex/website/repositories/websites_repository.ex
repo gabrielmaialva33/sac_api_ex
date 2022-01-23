@@ -42,9 +42,9 @@ defmodule SacApiEx.Website.Repositories.WebsitesRepository do
 
   """
   def get_website!(id),
-      do:
-        Repo.get!(Website, id)
-        |> Repo.preload(:troubles)
+    do:
+      Repo.get!(Website, id)
+      |> Repo.preload(:troubles)
 
   @doc """
   Creates a website.

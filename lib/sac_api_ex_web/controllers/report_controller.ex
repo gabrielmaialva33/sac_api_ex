@@ -1,8 +1,8 @@
 defmodule SacApiExWeb.ReportController do
   use SacApiExWeb, :controller
 
-  alias SacApiEx.Troubles.Repositories.ReportsRepository
-  alias SacApiEx.Troubles.Models.Report
+  alias SacApiEx.Trouble.Repositories.ReportsRepository
+  alias SacApiEx.Trouble.Models.Report
 
   action_fallback SacApiExWeb.FallbackController
 

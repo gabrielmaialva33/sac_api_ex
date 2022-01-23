@@ -1,4 +1,4 @@
-defmodule SacApiEx.Troubles.Repositories.TroublesRepository do
+defmodule SacApiEx.Trouble.Repositories.TroublesRepository do
   @moduledoc """
   The Troubles context.
   """
@@ -9,7 +9,7 @@ defmodule SacApiEx.Troubles.Repositories.TroublesRepository do
   alias SacApiEx.Repo
   alias Flop
 
-  alias SacApiEx.Troubles.Models.Trouble
+  alias SacApiEx.Trouble.Models.Trouble
 
   @doc """
   Returns the list of troubles.

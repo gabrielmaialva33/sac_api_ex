@@ -1,8 +1,8 @@
 defmodule SacApiExWeb.WebsiteController do
   use SacApiExWeb, :controller
 
-  alias SacApiEx.Websites.Repositories.WebsitesRepository
-  alias SacApiEx.Websites.Models.Website
+  alias SacApiEx.Website.Repositories.WebsitesRepository
+  alias SacApiEx.Website.Models.Website
   alias Flop
 
   plug :put_view, SacApiExWeb.WebsiteView

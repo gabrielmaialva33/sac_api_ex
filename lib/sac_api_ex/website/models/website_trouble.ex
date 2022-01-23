@@ -1,12 +1,12 @@
-defmodule SacApiEx.Websites.Models.WebsiteTrouble do
+defmodule SacApiEx.Website.Models.WebsiteTrouble do
   @moduledoc false
 
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias SacApiEx.Websites.Models.Website
-  alias SacApiEx.Troubles.Models.Trouble
-  alias SacApiEx.Websites.Models.WebsiteTrouble
+  alias SacApiEx.Website.Models.Website
+  alias SacApiEx.Trouble.Models.Trouble
+  alias SacApiEx.Website.Models.WebsiteTrouble
 
   # global fields
   @required_fields ~w(website_id trouble_id)a
@@ -34,9 +34,9 @@ defmodule SacApiEx.Websites.Models.WebsiteTrouble do
     |> foreign_key_constraint(:websites)
     |> foreign_key_constraint(:troubles)
     |> unique_constraint(
-      [:websites, :troubles],
-      name: :website_id_trouble_id_unique_index,
-      message: @already_exists
-    )
+         [:websites, :troubles],
+         name: :website_id_trouble_id_unique_index,
+         message: @already_exists
+       )
   end
 end

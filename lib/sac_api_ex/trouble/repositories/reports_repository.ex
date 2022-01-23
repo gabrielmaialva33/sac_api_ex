@@ -1,4 +1,4 @@
-defmodule SacApiEx.Troubles.Repositories.ReportsRepository do
+defmodule SacApiEx.Trouble.Repositories.ReportsRepository do
   @moduledoc """
   The Reports context.
   """
@@ -6,7 +6,7 @@ defmodule SacApiEx.Troubles.Repositories.ReportsRepository do
   import Ecto.Query, warn: false
 
   alias SacApiEx.Repo
-  alias SacApiEx.Troubles.Models.Report
+  alias SacApiEx.Trouble.Models.Report
 
   @doc """
   Returns the list of reports.

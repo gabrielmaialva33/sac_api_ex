@@ -1,4 +1,4 @@
-defmodule SacApiEx.Websites.Repositories.WebsitesRepository do
+defmodule SacApiEx.Website.Repositories.WebsitesRepository do
   @moduledoc """
   The Websites context.
   """
@@ -6,7 +6,7 @@ defmodule SacApiEx.Websites.Repositories.WebsitesRepository do
   import Ecto.Query, warn: false
 
   alias Ecto.Changeset
-  alias SacApiEx.{Repo, Websites.Models.Website}
+  alias SacApiEx.{Repo, Website.Models.Website}
   alias Flop
 
   @doc """
@@ -42,9 +42,9 @@ defmodule SacApiEx.Websites.Repositories.WebsitesRepository do
 
   """
   def get_website!(id),
-    do:
-      Repo.get!(Website, id)
-      |> Repo.preload(:troubles)
+      do:
+        Repo.get!(Website, id)
+        |> Repo.preload(:troubles)
 
   @doc """
   Creates a website.

@@ -1,8 +1,8 @@
 defmodule SacApiExWeb.TroubleController do
   use SacApiExWeb, :controller
 
-  alias SacApiEx.Troubles.Repositories.TroublesRepository
-  alias SacApiEx.Troubles.Models.Trouble
+  alias SacApiEx.Trouble.Repositories.TroublesRepository
+  alias SacApiEx.Trouble.Models.Trouble
   alias Flop
 
   plug :put_view, SacApiExWeb.TroubleView

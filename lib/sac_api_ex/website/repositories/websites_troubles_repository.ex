@@ -1,4 +1,4 @@
-defmodule SacApiEx.Websites.Repositories.WebsitesTroublesRepository do
+defmodule SacApiEx.Website.Repositories.WebsitesTroublesRepository do
   @moduledoc """
   The Websites context.
   """
@@ -6,7 +6,7 @@ defmodule SacApiEx.Websites.Repositories.WebsitesTroublesRepository do
   import Ecto.Query, warn: false
   alias SacApiEx.Repo
 
-  alias SacApiEx.Websites.Models.WebsiteTrouble
+  alias SacApiEx.Website.Models.WebsiteTrouble
 
   @doc """
   Returns the list of websites_troubles.

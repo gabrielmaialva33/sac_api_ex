@@ -1,10 +1,10 @@
-defmodule SacApiEx.Troubles.Models.Report do
+defmodule SacApiEx.Trouble.Models.Report do
   @moduledoc false
 
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias SacApiEx.Troubles.Models.{Report, Trouble}
+  alias SacApiEx.Trouble.Models.{Report, Trouble}
 
   # global fields
   @required_fields ~w(trouble_id)a

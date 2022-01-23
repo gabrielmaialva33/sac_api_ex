@@ -1,17 +1,15 @@
-defmodule SacApiEx.Websites.Models.Website do
-  @moduledoc """
-  Define website schema.
-  """
+defmodule SacApiEx.Trouble.Models.Trouble do
+  @moduledoc false
 
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias SacApiEx.Websites.Models.{Website, WebsiteTrouble}
-  alias SacApiEx.Troubles.Models.Trouble
+  alias SacApiEx.Trouble.Models.{Trouble, Report}
+  alias SacApiEx.Website.Models.{Website, WebsiteTrouble}
 
   # global fields
-  @required_fields ~w(title url)a
-  @optional_fields ~w(description)a
+  @required_fields ~w(title description)a
+  @optional_fields ~w(type)a
 
   # website flop drive
   @derive {
@@ -24,35 +22,38 @@ defmodule SacApiEx.Websites.Models.Website do
     max_limit: 100
   }
 
-  # websites schema
+  # troubles schema
   @primary_key {:id, :binary_id, autogenerate: true}
-  @type t :: %Website{}
-  schema "websites" do
+  @type t :: %Trouble{}
+  schema "troubles" do
     field :title, :string
     field :description, :string
-    field :url, :string
+    field :type, :string
+
     field :is_deleted, :boolean, default: false
 
     timestamps()
 
     # set relationships
-    # has_many :troubles, Trouble
-    many_to_many :troubles,
-                 Trouble,
+    # belongs_to :websites, Website
+    many_to_many :websites,
+                 Website,
                  join_through: WebsiteTrouble,
                  join_keys: [
                    website_id: :id,
                    trouble_id: :id
                  ],
-                 on_replace: :mark_as_invalid
+                 on_replace: :delete
+
+    has_many :reports, Report, foreign_key: :trouble_id, references: :id
   end
 
   @doc false
-  def changeset(%Website{} = website, params \\ %{}) do
-    website
+  def changeset(%Trouble{} = trouble, params \\ %{}) do
+    trouble
     |> cast(params, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
+    |> update_change(:title, &String.capitalize/1)
     |> unique_constraint(:title)
-    |> cast_assoc(:troubles, with: &Trouble.changeset/2, required: false)
   end
 end
